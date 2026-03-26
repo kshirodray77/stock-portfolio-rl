@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "stock-portfolio-rl"
+version = "0.1.0"
+description = "A Gymnasium-compatible RL environment for stock portfolio rebalancing"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Your Name", email = "your@email.com"},
+]
+keywords = ["reinforcement-learning", "portfolio", "gymnasium", "finance", "trading"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "gymnasium>=0.29.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+train = [
+    "stable-baselines3[extra]>=2.1.0",
+    "torch>=2.0.0",
+]
+viz = [
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+]
+historical = [
+    "pandas>=2.0.0",
+    "yfinance>=0.2.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+]
+all = [
+    "stock-portfolio-rl[train,viz,historical,dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/stock-portfolio-rl"
+Repository = "https://github.com/yourusername/stock-portfolio-rl"
+Issues = "https://github.com/yourusername/stock-portfolio-rl/issues"
+
+[tool.setuptools.packages.find]
+include = ["portfolio_env*", "agents*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
